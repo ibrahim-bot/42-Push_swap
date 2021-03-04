@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:50:48 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/03 16:27:00 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:15:40 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,26 @@ int	ft_isdigit(int c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
+}
+
+long long   ft_atoi(const char *str)
+{
+	long long   i;
+	long long   sign;
+	long long   nbr;
+
+	sign = 1;
+	i = 0;
+	nbr = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		nbr = nbr * 10 + (long long)str[i++] - '0';
+	return (nbr * sign);
 }
