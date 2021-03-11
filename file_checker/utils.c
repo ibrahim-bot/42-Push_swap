@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:50:48 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/04 16:05:04 by ibrahim          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:33:33 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void    ft_putchar(char c)
+void		ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void ft_putstr(char *str)
+void		ft_putstr(char *str)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i])
-    {
-        ft_putchar(str[i]);
-        i++;
-    }
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
 }
 
-int	ft_isdigit(int c)
+int			ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-long long   ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	long long   i;
-	long long   sign;
-	long long   nbr;
+	long long	i;
+	long long	sign;
+	long long	nbr;
 
 	sign = 1;
 	i = 0;
@@ -56,4 +56,19 @@ long long   ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 		nbr = nbr * 10 + (long long)str[i++] - '0';
 	return (nbr * sign);
+}
+
+char		*ft_strncpy(char *dest, char *src, int n)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	while (i < n)
+		dest[i++] = '\0';
+	return (dest);
 }

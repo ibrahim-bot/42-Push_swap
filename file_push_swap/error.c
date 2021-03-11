@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:29:00 by ibrahim           #+#    #+#             */
-/*   Updated: 2021/03/04 16:15:34 by ibrahim          ###   ########.fr       */
+/*   Updated: 2021/03/05 13:54:01 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ int		check_len(char **av)
 	return (0);
 }
 
-int     check_error(int ac, char **av)
+int     check_error(char **av)
 {
-	if (ac < 2)
-		return (ft_error("Error: ADD numbers\n"));
 	if (check_len(av) == 1)
 		return (ft_error("Error: Value greater than an int.\n"));
 	if (check_num(av) == 1)
