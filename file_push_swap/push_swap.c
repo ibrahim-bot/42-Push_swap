@@ -6,36 +6,40 @@
 /*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:37:47 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/11 17:02:08 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 13:09:34 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push.h"
 
-t_elem	*fill_list(t_elem *list, char **av)
+int		check_tri(t_elem *list)
 {
-	int i;
-
-	i = 1;
-	while (av[i])
+	while (list->nxt != NULL)
 	{
-		list = add_end(list, ft_atoi(av[i]));
-		i++;
+		if (list->val > list->nxt->val)
+			return (1);
+		list = list->nxt;
 	}
-	return (list);
+	return (0);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-    t_elem	*list_a;
+	t_elem	*list_a;
 	t_elem	*list_b;
+	t_check	check;
 
-	(void)ac;
-	list_b = NULL;
 	list_a = NULL;
-    if (check_error(av) == 1)
-        return (1);
-    list_a = fill_list(list_a, av);
-	ft_putstr("sa\n");
-    return (0);
+	list_b = NULL;
+	if (check_error(ac, av, &check) == 1)
+		return (1);
+	if (check.cas == 1)
+		fill_list(&list_a, check.arg);
+	else
+		fill_list(&list_a, av);
+	if (check_tri(list_a) == 0)
+		return (0);
+	//print_list(list_a);
+	delet_list(&list_a);
+	return (0);
 }

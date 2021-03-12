@@ -6,11 +6,11 @@
 /*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:56:10 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/12 12:33:28 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 10:50:00 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push.h"
 
 void	tri_list_s(t_elem **list_a, t_elem **list_b, t_check *check, int *i)
 {
@@ -46,7 +46,7 @@ void	tri_list(t_elem **list_a, t_elem **list_b, t_check *check)
 	int	i;
 
 	i = 0;
-	if (check->str == NULL)
+	if (len_list(*list_a) == 1 || check->str == NULL)
 		return ;
 	while (check->str[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:43:13 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/11 16:41:25 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 16:39:07 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,15 @@ int		loop_gen(t_check *check)
 	while (get_next_line(0, &buffer) > 0)
 	{
 		if (ft_l(buffer) == 0)
-			return (0);
+		{
+			free(buffer);
+			return (0); 
+		}
 		if (parsing(buffer) == 1)
+		{
+			free(buffer);
 			return (ft_error("Error: Command not found\n"));
+		}
 		stock_buffer(check, buffer);
 		free(buffer);
 	}

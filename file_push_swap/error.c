@@ -6,24 +6,20 @@
 /*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:29:00 by ibrahim           #+#    #+#             */
-/*   Updated: 2021/03/05 13:54:01 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 11:01:53 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push.h"
 
-int     ft_error(char *str)
-{
-	ft_putstr(str);
-	return (1);
-}
-
-int     check_num(char **av)
+int		check_num(char **av, int cas)
 {
 	int i;
 	int j;
 
 	i = 1;
+	if (cas == 1)
+		i--;
 	while (av[i])
 	{
 		j = 0;
@@ -45,13 +41,13 @@ int		check_doublon(char **av)
 	int i;
 	int j;
 
-	i = 1;
+	i = 0;
 	while (av[i])
 	{
 		j = i + 1;
 		while (av[j])
 		{
-			if (strcmp(av[i], av[j]) == 0)
+			if (ft_strcmp(av[i], av[j]) == 0)
 				return (1);
 			j++;
 		}
@@ -63,7 +59,7 @@ int		check_doublon(char **av)
 int		check_len(char **av)
 {
 	long long	t;
-	int i;
+	int			i;
 
 	i = 0;
 	while (av[i])
@@ -76,13 +72,35 @@ int		check_len(char **av)
 	return (0);
 }
 
-int     check_error(char **av)
+int		check_space(char *str)
 {
-	if (check_len(av) == 1)
-		return (ft_error("Error: Value greater than an int.\n"));
-	if (check_num(av) == 1)
-		return (ft_error("Error: Use only numbers.\n"));
-	if (check_doublon(av) == 1)
-		return (ft_error("Error: Duplicate.\n"));
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		check_error(int ac, char **av, t_check *check)
+{
+	if (ac < 2)
+		return (1);
+	if (av[2] == NULL && check_space(av[1]) == 1)
+	{
+		check->cas = 1;
+		check->arg = ft_split(av[1], ' ');
+		if (verif_error(check, av) == 1)
+			return (1);
+		return (0);
+	}
+	if (ft_l(av[1]) == 0)
+		return (1);
+	if (verif_error(check, av) == 1)
+		return (1);
 	return (0);
 }
