@@ -6,7 +6,7 @@
 /*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:43:13 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/12 16:39:07 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:06:02 by ichougra         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		loop_gen(t_check *check)
 		if (ft_l(buffer) == 0)
 		{
 			free(buffer);
-			return (0); 
+			return (0);
 		}
 		if (parsing(buffer) == 1)
 		{
