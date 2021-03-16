@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:50:19 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/10 16:29:32 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 23:57:41 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		verif_error(t_check *check, char **av)
 {
 	if (check->cas == 1)
 	{
-		if (check->arg[0] == NULL)
-			return (ft_error("Error: ADD numbers\n"));
+		// if (check->arg[0] == NULL)
+		// 	return (ft_error("Error: ADD numbers\n"));
 		if (check_len(check->arg) == 1)
 			return (ft_error("Error: Value greater than an int.\n"));
 		if (check_num(check->arg, check->cas) == 1)

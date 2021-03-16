@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:43:13 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/16 15:06:02 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 00:16:10 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int		main(int ac, char **av)
 
 	list_a = NULL;
 	list_b = NULL;
+	check.cas = 0;
+	check.str = NULL;
 	if (check_error(ac, av, &check) == 1)
 		return (1);
 	if (check.cas == 1)
@@ -78,7 +80,10 @@ int		main(int ac, char **av)
 	else
 		fill_list(&list_a, av);
 	if (loop_gen(&check) == 1)
+	{
+		delet_list(&list_a);
 		return (1);
+	}
 	tri_list(&list_a, &list_b, &check);
 	if (last_check(list_a, list_b) == 0)
 		return (ft_error("OK\n"));

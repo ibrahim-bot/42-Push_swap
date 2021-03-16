@@ -6,7 +6,7 @@
 /*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:37:47 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/16 23:44:05 by ibrahim          ###   ########.fr       */
+/*   Updated: 2021/03/17 00:09:17 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,20 @@ int		search_lit(t_elem *list)
 	int		tmp;
 	t_elem	*dtmp;
 
+	tmp = list->val;
 	dtmp = list;
 	i = 0;
 	j = len_list(list);
 	while (i < j)
 	{
-		if (tmp > list->val)
+		if (list->val < tmp)
 			tmp = list->val;
 		i++;
 		list = list->nxt;
 	}
 	i = 0;
-	while (tmp != dtmp->val)
+	j = tmp;
+	while (dtmp->val != j)
 	{
 		i++;
 		dtmp = dtmp->nxt;
@@ -122,6 +124,7 @@ int		main(int ac, char **av)
 
 	list_a = NULL;
 	list_b = NULL;
+	check.cas = 0;
 	if (check_error(ac, av, &check) == 1)
 		return (1);
 	if (check.cas == 1)
@@ -129,7 +132,10 @@ int		main(int ac, char **av)
 	else
 		fill_list(&list_a, av);
 	if (check_speed(list_a) == 0)
+	{
+		delet_list(&list_a);
 		return (0);
+	}
 	print_list(list_a);
 	first_check(&list_a, &list_b);
 	print_list(list_a);
