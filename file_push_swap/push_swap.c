@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:37:47 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/16 16:38:44 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 23:44:05 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push.h"
 
-int		check_speed(t_elem *list)
+int		check_tri(t_elem *list)
 {
 	while (list->nxt != NULL)
 	{
@@ -23,28 +23,95 @@ int		check_speed(t_elem *list)
 	return (0);
 }
 
-void	first_check(t_elem *list)
+int		check_speed(t_elem *list)
+{
+	if (len_list(list) == 2)
+	{
+		if (list->val > list->nxt->val)
+			ft_putstr("sa\n");
+		return (0);
+	}
+	while (list->nxt != NULL)
+	{
+		if (list->val > list->nxt->val)
+			return (1);
+		list = list->nxt;
+	}
+	return (0);
+}
+
+int		search_lit(t_elem *list)
 {
 	int		i;
-	int		find;
+	int		j;
 	int		tmp;
+	t_elem	*dtmp;
 
-	find = 1;
-	tmp = list->val;
-	while (find)
+	dtmp = list;
+	i = 0;
+	j = len_list(list);
+	while (i < j)
 	{
-		find = 0;
-	 	i = 0;
-		while (i < len_list(list))
-		{
-			if (tmp > list->val)
-				tmp = list->val;
-			i++;
-			list = list->nxt;
-			find = 1;
-		}
+		if (tmp > list->val)
+			tmp = list->val;
+		i++;
+		list = list->nxt;
 	}
-	printf("%d\n", tmp);
+	i = 0;
+	while (tmp != dtmp->val)
+	{
+		i++;
+		dtmp = dtmp->nxt;
+	}
+	return (i + 1);
+}
+
+void	check_list2(t_elem **list, t_elem **list2)
+{
+	int j;
+
+	j = len_list(*list2);
+	while (j > 0)
+	{
+		exec_pa(list, list2);
+		ft_putstr("pa\n");
+		j--;
+	}
+	if (check_list(*list) != 1)
+		delet_list(list2);
+}
+
+void	first_check(t_elem **list, t_elem **list2)
+{
+	while (42)
+	{
+		if (check_tri(*list) == 0)
+		{
+			check_list2(list, list2);
+			return ;
+		}
+		else if (search_lit(*list) == 1)
+		{
+			exec_pb(list, list2);
+			ft_putstr("pb\n");
+		}
+		else if (search_lit(*list) == 2)
+		{
+			exec_sa_sb(list);
+			ft_putstr("sa\n");
+		}
+		else if (search_lit(*list) == len_list(*list))
+		{
+			exec_rra_rrb(list);
+			ft_putstr("rra\n");
+		}
+		else 
+		{
+			exec_ra_rb(list);
+			ft_putstr("ra\n");
+		}
+		
+	}
 }
 
 int		main(int ac, char **av)
@@ -64,7 +131,8 @@ int		main(int ac, char **av)
 	if (check_speed(list_a) == 0)
 		return (0);
 	print_list(list_a);
-	first_check(list_a);
+	first_check(&list_a, &list_b);
+	print_list(list_a);
 	delet_list(&list_a);
 	return (0);
 }
