@@ -6,7 +6,7 @@
 /*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:37:47 by ichougra          #+#    #+#             */
-/*   Updated: 2021/03/17 00:09:17 by ibrahim          ###   ########.fr       */
+/*   Updated: 2021/03/17 01:17:43 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,58 @@ void	first_check(t_elem **list, t_elem **list2)
 	}
 }
 
+int		search_lit_three(t_elem *list)
+{
+	int		i;
+	int		j;
+	int		tmp;
+	t_elem	*dtmp;
+
+	tmp = list->val;
+	dtmp = list;
+	i = 0;
+	j = len_list(list);
+	while (i < j)
+	{
+		if (list->val > tmp)
+			tmp = list->val;
+		i++;
+		list = list->nxt;
+	}
+	i = 0;
+	j = tmp;
+	while (dtmp->val != j)
+	{
+		i++;
+		dtmp = dtmp->nxt;
+	}
+	return (i + 1);
+}
+
+void	three_check(t_elem **list)
+{
+	while (42)
+	{
+		if (check_tri(*list) == 0)
+			return ;
+		else if (search_lit_three(*list) == 2)
+		{
+			exec_rra_rrb(list);
+			ft_putstr("rra\n");
+		}
+		else if (search_lit(*list) == len_list(*list))
+		{
+			exec_sa_sb(list);
+			ft_putstr("sa\n");
+		}
+		else 
+		{
+			exec_ra_rb(list);
+			ft_putstr("ra\n");
+		}
+	}		
+}
+
 int		main(int ac, char **av)
 {
 	t_elem	*list_a;
@@ -136,9 +188,12 @@ int		main(int ac, char **av)
 		delet_list(&list_a);
 		return (0);
 	}
-	print_list(list_a);
-	first_check(&list_a, &list_b);
-	print_list(list_a);
+	//print_list(list_a);
+	if (len_list(list_a) == 3)
+		three_check(&list_a);
+	else 
+		first_check(&list_a, &list_b);
+	//print_list(list_a);
 	delet_list(&list_a);
 	return (0);
 }

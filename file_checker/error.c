@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ichougra <ichougra@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibrahim <ibrahim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:29:00 by ibrahim           #+#    #+#             */
-/*   Updated: 2021/03/12 11:17:36 by ichougra         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 00:22:00 by ibrahim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		check_space(char *str)
 int		check_error(int ac, char **av, t_check *check)
 {
 	if (ac < 2)
-		return (ft_error("Error: ADD numbers\n"));
+		return (1);
 	if (av[2] == NULL && check_space(av[1]) == 1)
 	{
 		check->cas = 1;
